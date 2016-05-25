@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+
+      <div id="header">
+    <div id="left">
+      <h1><p>Course Tracker</p></h1>
+
+    </div>
+    <div id="right">
+      
+      <h1>Welcome {{firstname[0]['first_name'].capitalize()}}
+      <form action="/logout" method='POST'>
+      <p><input type='submit' value='Log Out'></p>
+      </form>   
+      
+    </div>
+  </div>  
+  		<form action="/add_course" method='POST'>
+  		<h2>{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}</h2>
+
+      <h1>Add a Course:</h1>
+    	<p>Name: <input type='text' name='title'><br></p>
+    	<p>Description: <input type='text' name='description'><br></p>
+    	
+    	<input type='submit' value='Add'>
+
+      </form>
+
+      <table border="1" style="width:45%">
+
+  <h2>Courses:</h2>
+  <tr>
+  
+  {% for i in course %}
+    
+    <td>{{i['title']}}</td>
+    
+    <td>{{i['description']}}</td>  
+    
+    
+    
+  <form action="/courses/destroy" method='POST'>
+    <input type="hidden" name="CourseID" value="{{i.id}}">
+    <td><input type='submit' value='Delete'></td>
+  </form>  
+
+  <form action="/edit/course" method='POST'>
+    <input type="hidden" name="CourseID" value="{{i.id}}">
+    <td><input type='submit' value='Edit Course'></td>
+  </form>  
+    
+  </tr>
+    {% endfor %}
+
+  
+
+  
+    
+          
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Delete Confirm</title>
+<style>
+.button {
+	color: red;
+	background-image: -webkit-linear-gradient(top, #E1E1E1, #F7F7F7);
+      background-image: -moz-linear-gradient(top, #E1E1E1, #F7F7F7);
+      background-image: -ms-linear-gradient(top, #E1E1E1, #F7F7F7);
+      background-image: -o-linear-gradient(top, #E1E1E1, #F7F7F7);
+      background-image: linear-gradient(top, #E1E1E1, #F7F7F7);
+}
+</style>
+</head>
+<body>
+
+<h1>Hey yo {{firstname[0]['first_name'].capitalize()}}??!!</h1>
+<form action="/logout" method='POST'>
+    <p><input type='submit' value='Log Out'></p>
+</form>  
+<form action="/dashboard" method='POST'>
+    <p><input type='submit' value='Dashboard'></p>
+</form>  
+<h2>Are you sure you want to delete the following user?
+<h1>First Name: {{user[0]['first_name']}}</h1>
+<h1>Last Name: {{user[0]['last_name']}}</h1>
+<h1>Email: {{user[0]['email']}}</h1>
+<h2>{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}	
+        {% endwith %}</h2>
+
+<!-- no button -->
+<form action="/get_all_users" method='POST'>
+<p><input type='submit' value='No'></p>  
+</form>
+<!-- delete button  -->
+<form action="/delete/user" method='POST'>
+<p><input type='submit' value='Delete'></p>  
+</form>
+</body>
+</html>

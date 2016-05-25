@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome Page</title>
+</head>
+<body>
+<h1>Welcome {{firstname[0]['first_name'].capitalize()}}</h1>
+<form action="/logout" method='POST'>
+	<p><input type='submit' value='Log Out'></p>
+</form>  
+<h2>The Current Time: {{session['time']}}</h2>
+<h2>The Current Date: {{session['date']}}</h2>
+<h2>Your top ten pokemons:</h2>
+{% for id in pokennum%}
+	<img name="pokemon" src="http://pokeapi.co/media/img/{{id}}.png">
+{%endfor%}
+
+
+
+<h1>Choose ten favorite pokemons</h1>
+<!-- <form action="/choose" method='POST'> -->
+	
+	
+	{% for i in range(1,200)%}
+	<a href="/choose/{{i}}">
+	<img name={{i}} src="http://pokeapi.co/media/img/{{i}}.png">
+	</a>
+	{%endfor%}
+	
+<!-- </form> -->
+
+<h1>What would you like to do?</h1>
+<form action="/get_all_users" method='POST'>
+   	<p><input type='submit' value='View Users'></p>
+</form>
+
+<form action="/get_all_courses" method='POST'>
+   	<p><input type='submit' value='View Courses'></p>
+    </form>
+</body>
+</html>

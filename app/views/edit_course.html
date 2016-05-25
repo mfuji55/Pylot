@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Course</title>
+</head>
+<body>
+<h2>{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}</h2>
+	
+		<h1> Hey yo {{firstname[0]['first_name']}}, make changes </h1>
+		<form action="/logout" method='POST'>
+      		<p><input type='submit' value='Log Out'></p>
+      	</form>  
+      	<form action="/dashboard" method='POST'>
+    		<p><input type='submit' value='Dashboard'></p>
+		</form>  
+		<form action="/course/update" method='POST'>
+		<h2>Edit Course: {{course[0]['title']}}</h2>
+		
+          <p>Course Title: <input type='text' style="width:500px; height:25px;" name='course_title' name="course_title" value="{{course[0].title}}"></p>
+          <input type="hidden" name="CourseID" value="{{course[0].id}}">
+          <p>Course Description: <input type='text' style="width:500px; height:25px;" name='description' name="course_desc" value="{{course[0].description}}"></p>
+          
+          <!-- <p>Email: <input type='text' name='email'><br></p>
+          <p>Password: <input type='text' name='password'><br></p>
+          <p>Confirm Password: <input type='text' name='pwdconfirm'><br></p>
+           -->
+          <p><input type='submit' value='Update'></p>
+
+    	</form>
+    <form action="/get_all_courses" method='POST'>
+    	<p><input type='submit' value='Cancel Changes'></p>
+    </form>
+</body>
+</html>

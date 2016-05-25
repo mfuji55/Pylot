@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit User</title>
+</head>
+<body>
+<h1>Edit User Details</h1>
+<h2>{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}</h2>
+	<h2><form action="/user/update" method='POST'>
+          <p>First Name: <input type='text' name='firstname' value={{user[0].first_name}}><br></p>
+          <p>Last Name: <input type='text' name='lastname' value={{user[0].last_name}}><br></p>
+          <p>Email: {{user[0]['email']}} Uneditable</p>
+          <p>Password: <input type='text' name='password' value={{user[0].password}}><br></p>
+          <input type='hidden' name='userID' value={{user[0].id}}>
+          <input type='submit' value='Update'>
+
+    </form></h2>
+</body>
+</html>

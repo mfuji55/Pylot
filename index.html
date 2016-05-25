@@ -1,0 +1,51 @@
+<html>
+    <head>
+    <link rel="stylesheet" type="text/css" href="static/styling.css">
+    </head>
+    <body>
+  <div id="wrapper">
+  <title>Ninja Money</title>
+  <h1>Your Gold: <textarea name="gold" width="300" font="10">{{session['gold']}}</textarea></h1>
+  <div id = "activities">
+      <div id = "Farm">
+      <h3>Farm</h3>
+      <h4>Earns 10-20 Golds</h4>
+        <form action='/process_money' method='POST'> 
+        <input type="hidden" name="place" value="farm">
+        <input type="submit" name="farm" value="Find Gold">
+        </form>
+      </div>
+      <div id = "Cave">
+      <h3>Cave</h3>
+      <h4>Earns 5-10 Golds</h4>
+        <form action='/process_money' method='POST'> 
+        <input type="hidden" name="place" value="cave">
+        <input type="submit" name="cave" value="Find Gold">
+        </form>
+      </div>
+      <div id = "House">
+      <h3>House</h3>
+      <h4>Earns 2-5 Golds</h4>
+        <form action='/process_money' method='POST'> 
+        <input type="hidden" name="place" value="house">
+        <input type="submit" name="house" value="Find Gold">
+        </form>
+      </div>
+      <div id = "Casino">
+      <h3>Casino</h3>
+      <h4>Earns/Takes 0-50 Golds</h4>
+        <form action='/process_money' method='POST'> 
+        <input type="hidden" name="place" value="casino">
+        <input type="submit" name="casino" value="Find Gold">
+        </form>
+      </div>
+
+  </div>
+  <p>Activities: </p>
+  <div id="activity_log">
+    <h1><textarea name="log" cols="50" rows="10" font="10">{{session['log']}}</textarea></h1>
+  </div>
+  
+</div>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Users</title>
+</head>
+<body>
+<h1>Hey yo {{firstname[0]['first_name'].capitalize()}}!!</h1>
+<form action="/logout" method='POST'>
+      		<p><input type='submit' value='Log Out'></p>
+      	</form>  
+      	<form action="/dashboard" method='POST'>
+    <p><input type='submit' value='Dashboard'></p>
+</form>  
+<h2>{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}</h2>
+      <form action="/add_user" method='POST'>  
+      <h1>Add a user:</h1>
+    	<p>First Name: <input type='text' name='firstname'><br></p>
+          <p>Last Name: <input type='text' name='lastname'><br></p>
+          <p>Email: <input type='text' name='email'><br></p>
+          <p>Password: <input type='text' name='password' ><br></p>
+          <p>Confirm Password: <input type='text' name='pwdconfirm'><br></p>
+    	<input type='hidden' name='token' value=1>
+    	<input type='submit' value='Add'>
+
+      </form>
+
+      <table border="1" style="width:80%">
+
+  <h2>Users:</h2>
+  <tr>
+  
+  {% for i in users %}
+    <td>First Name</td>
+    <td>{{i['first_name']}}</td>
+    <td>{{i['last_name']}}</td>
+    <td>{{i['email']}}</td>
+    <td>{{i['created_at']}}</td>
+    <td>{{i['updated_at']}}</td>
+    <td>{{i.id}}</td>
+
+  <form action="/user/destroy" method='POST'>
+  	<input type="hidden" name="userID" value="{{i.id}}">
+  	<td><input type='submit' value='Delete User'></td>
+  </form>  
+
+
+  <form action="/edit/user" method='POST'>
+    <input type="hidden" name="userID" value="{{i.id}}">
+    <td><input type='submit' value='Edit User'></td>
+  </form>  
+    
+  </tr>
+    {% endfor %}
+</body>
+</html>
